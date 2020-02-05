@@ -1,6 +1,7 @@
 package com.caguilera.rockpaperscissors.dto;
 
 import com.caguilera.rockpaperscissors.core.GameStatistics;
+import com.caguilera.rockpaperscissors.core.Result;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -29,7 +30,8 @@ class GameResultDtoTest {
         when(statistics.getPlayer2Wins()).thenReturn(player2Wins);
         when(statistics.getDraws()).thenReturn(draws);
 
-        GameResultDto gameResultDto = GameResultDto.from(gameId, statistics);
+        Result lastResult = Result.DRAW;
+        GameResultDto gameResultDto = GameResultDto.from(gameId, lastResult, statistics);
 
         assertThat(gameResultDto.getGameId()).isEqualTo(gameId);
         assertThat(gameResultDto.getTotalRounds()).isEqualTo(totalRounds);

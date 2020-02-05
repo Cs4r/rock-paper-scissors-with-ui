@@ -28,14 +28,15 @@ class RockPaperScissorsGameServiceTest {
         assertThat(gameResultDto.getPlayer1Wins()).isEqualTo(2);
         assertThat(gameResultDto.getPlayer2Wins()).isEqualTo(0);
         assertThat(gameResultDto.getDraws()).isEqualTo(0);
+        assertThat(gameResultDto.getLastResult()).isEqualTo(Result.PLAYER_1_WINS);
 
         gameId = 2;
 
         service.playRound(gameId, Shape.PAPER, Shape.PAPER);
         service.playRound(gameId, Shape.ROCK, Shape.ROCK);
-        service.playRound(gameId, Shape.SCISSORS, Shape.SCISSORS);
+        service.playRound(gameId, Shape.ROCK, Shape.SCISSORS);
 
-        gameResultDto = service.playRound(gameId, Shape.ROCK, Shape.SCISSORS);
+        gameResultDto = service.playRound(gameId, Shape.SCISSORS, Shape.SCISSORS);
 
         assertThat(gameResultDto.getGameId()).isEqualTo(gameId);
         assertThat(gameResultDto.getRounds()).isEqualTo(4);
@@ -43,7 +44,7 @@ class RockPaperScissorsGameServiceTest {
         assertThat(gameResultDto.getPlayer1Wins()).isEqualTo(3);
         assertThat(gameResultDto.getPlayer2Wins()).isEqualTo(0);
         assertThat(gameResultDto.getDraws()).isEqualTo(3);
-
+        assertThat(gameResultDto.getLastResult()).isEqualTo(Result.DRAW);
 
         gameId = 3;
 
@@ -59,5 +60,6 @@ class RockPaperScissorsGameServiceTest {
         assertThat(gameResultDto.getPlayer1Wins()).isEqualTo(3);
         assertThat(gameResultDto.getPlayer2Wins()).isEqualTo(4);
         assertThat(gameResultDto.getDraws()).isEqualTo(3);
+        assertThat(gameResultDto.getLastResult()).isEqualTo(Result.PLAYER_2_WINS);
     }
 }

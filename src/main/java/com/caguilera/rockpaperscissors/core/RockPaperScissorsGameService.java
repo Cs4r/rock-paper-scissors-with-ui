@@ -23,7 +23,7 @@ public class RockPaperScissorsGameService {
 
         statistics.registerRound(gameId, result);
 
-        return GameResultDto.from(gameId, statistics);
+        return GameResultDto.from(gameId, result, statistics);
     }
 
 }

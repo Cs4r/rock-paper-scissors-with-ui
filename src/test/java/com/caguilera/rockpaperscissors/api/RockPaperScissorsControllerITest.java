@@ -75,8 +75,7 @@ class RockPaperScissorsControllerITest extends BaseWebIntegrationTest {
                     .when()
                     .post(getUrl("/play"))
                     .then()
-                    .statusCode(400)
-                    .body(hasSameContentAs("invalidRequest_bothPlayerChoices.json").ignoring("timestamp"));
+                    .statusCode(400);
         }
 
         private String invalidPlayerChoices() throws JsonProcessingException {
@@ -119,7 +118,6 @@ class RockPaperScissorsControllerITest extends BaseWebIntegrationTest {
 
             return objectMapper.writeValueAsString(playRequest);
         }
-
 
     }
 
