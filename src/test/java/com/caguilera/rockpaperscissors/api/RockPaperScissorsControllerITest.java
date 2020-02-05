@@ -39,7 +39,7 @@ class RockPaperScissorsControllerITest extends BaseWebIntegrationTest {
 
         @Test
         @DisplayName("given invalid choice for player 1 then it must return 400")
-        void badRequest_invalidPlayer1Choice() throws JsonProcessingException {
+        void badRequestWithInvalidPlayer1Choice() throws JsonProcessingException {
 
             given()
                     .contentType(ContentType.JSON)
@@ -53,7 +53,7 @@ class RockPaperScissorsControllerITest extends BaseWebIntegrationTest {
 
         @Test
         @DisplayName("given invalid choice for player 2 then it must return 400")
-        void badRequest_invalidPlayer2Choice() throws JsonProcessingException {
+        void badRequestWithInvalidPlayer2Choice() throws JsonProcessingException {
 
             given()
                     .contentType(ContentType.JSON)
@@ -67,7 +67,7 @@ class RockPaperScissorsControllerITest extends BaseWebIntegrationTest {
 
         @Test
         @DisplayName("given invalid choices then it must return 400")
-        void badRequest_invalidChoices() throws JsonProcessingException {
+        void badRequestWithInvalidChoices() throws JsonProcessingException {
 
             given()
                     .contentType(ContentType.JSON)
