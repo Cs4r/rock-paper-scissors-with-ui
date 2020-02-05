@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
-    <title>Rock, paper, Scissors</title>
+    <title>Rock, Paper, Scissors</title>
 </head>
 <body>
 
@@ -48,18 +48,18 @@
 
         <div class="row" style="padding-top: 10px">
             <div class="col">
-                <button type="button" class="btn btn-primary">Play</button>
+                <button type="button" class="btn btn-primary" id="playBtn">Play</button>
 
-                <button type="button" class="btn btn-danger">Restart Game</button>
+                <button type="button" class="btn btn-danger" id="restartBtn">Restart Game</button>
             </div>
         </div>
 
         <div class="row" style="padding-top: 10px">
-            <div class="col"><strong>Rounds:</strong></div>
+            <div class="col"><strong>Rounds:</strong> <i id="roundsCount">0</i></div>
         </div>
 
         <div class="row" style="padding-top: 10px">
-            <table class="table">
+            <table class="table" id="roundsTable">
                 <thead>
                 <tr>
                     <th scope="col">Player1 Choice</th>
@@ -110,5 +110,38 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
         crossorigin="anonymous"></script>
+<script
+        src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8="
+        crossorigin="anonymous"></script>
+
+<script>
+
+    let generateGameId = function () {
+        return Math.floor((Math.random() * 1000000) + 1);
+    };
+
+    $(document).ready(function () {
+
+        let gameId = generateGameId();
+
+        $("#playBtn").click(function () {
+
+        });
+
+        $("#restartBtn").click(function () {
+            // Clear table
+            $("#roundsTable").find("tr:not(:first)").remove();
+
+            // Reset round count
+            $("#roundsCount").text(0)
+
+            // Generate a new gameId
+            gameId = generateGameId();
+        });
+    });
+
+</script>
+
 </body>
 </html>
