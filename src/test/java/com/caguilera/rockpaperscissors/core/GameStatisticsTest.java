@@ -39,6 +39,10 @@ public class GameStatisticsTest {
         gameStatistics.registerRound(3, Result.PLAYER_2_WINS);
 
         assertThat(gameStatistics.getTotalRounds()).isEqualTo(3);
+
+        gameStatistics.registerRound(5, Result.DRAW);
+
+        assertThat(gameStatistics.getTotalRounds()).isEqualTo(4);
     }
 
 }
