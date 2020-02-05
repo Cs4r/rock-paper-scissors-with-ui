@@ -14,7 +14,7 @@ public class RockPaperScissorsGameTest {
 
     @Test
     @DisplayName("Given same choice for both players, then game ends up in draw")
-    public void sameChoiceProducesDraw() {
+    void sameChoiceProducesDraw() {
         RockPaperScissorsGame game = new RockPaperScissorsGame();
 
         assertThat(game.play(Shape.ROCK, Shape.ROCK)).isEqualTo(Result.DRAW);
@@ -22,5 +22,17 @@ public class RockPaperScissorsGameTest {
         assertThat(game.play(Shape.PAPER, Shape.PAPER)).isEqualTo(Result.DRAW);
 
         assertThat(game.play(Shape.SCISSORS, Shape.SCISSORS)).isEqualTo(Result.DRAW);
+    }
+
+    @Test
+    @DisplayName("Given player 1 chooses ROCK and player 2 chooses PAPER then player 1 wins")
+    void player1RockVsPlayer2Paper() {
+
+        RockPaperScissorsGame game = new RockPaperScissorsGame();
+
+        Shape player1Choice = Shape.ROCK;
+        Shape player2Choice = Shape.PAPER;
+
+        assertThat(game.play(player1Choice, player2Choice)).isEqualTo(Result.PLAYER_1_WINS);
     }
 }

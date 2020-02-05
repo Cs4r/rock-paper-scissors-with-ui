@@ -6,5 +6,6 @@ package com.caguilera.rockpaperscissors;
  * @author Cesar Aguilera
  */
 public enum Result {
-    DRAW
+    DRAW,
+    PLAYER_1_WINS;
 }
