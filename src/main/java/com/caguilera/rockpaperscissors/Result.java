@@ -7,5 +7,6 @@ package com.caguilera.rockpaperscissors;
  */
 public enum Result {
     DRAW,
-    PLAYER_1_WINS;
+    PLAYER_1_WINS,
+    PLAYER_2_WINS
 }

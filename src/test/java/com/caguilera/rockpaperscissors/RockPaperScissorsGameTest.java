@@ -35,4 +35,16 @@ public class RockPaperScissorsGameTest {
 
         assertThat(game.play(player1Choice, player2Choice)).isEqualTo(Result.PLAYER_1_WINS);
     }
+
+    @Test
+    @DisplayName("Given player 1 chooses PAPER and player 2 chooses ROCK then player 2 wins")
+    void player1PaperVsPlayer2Rock() {
+
+        RockPaperScissorsGame game = new RockPaperScissorsGame();
+
+        Shape player1Choice = Shape.PAPER;
+        Shape player2Choice = Shape.ROCK;
+
+        assertThat(game.play(player1Choice, player2Choice)).isEqualTo(Result.PLAYER_2_WINS);
+    }
 }
