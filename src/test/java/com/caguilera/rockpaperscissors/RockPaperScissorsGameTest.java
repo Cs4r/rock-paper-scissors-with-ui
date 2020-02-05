@@ -1,6 +1,5 @@
 package com.caguilera.rockpaperscissors;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -59,5 +58,16 @@ public class RockPaperScissorsGameTest {
         Shape player2Choice = Shape.SCISSORS;
 
         assertThat(game.play(player1Choice, player2Choice)).isEqualTo(Result.PLAYER_2_WINS);
+    }
+
+    @Test
+    @DisplayName("Given player 1 chooses SCISSORS and player 2 chooses PAPER then player 1 wins")
+    void player1ScissorsVsPlayer2Paper() {
+        RockPaperScissorsGame game = new RockPaperScissorsGame();
+
+        Shape player1Choice = Shape.SCISSORS;
+        Shape player2Choice = Shape.PAPER;
+
+        assertThat(game.play(player1Choice, player2Choice)).isEqualTo(Result.PLAYER_1_WINS);
     }
 }
