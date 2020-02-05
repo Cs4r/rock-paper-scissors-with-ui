@@ -5,7 +5,7 @@ plugins {
     id 'idea'
 }
 
-group = 'com.caguilera'
+group = 'com.caguilera.rockpaperscissors'
 sourceCompatibility = '11'
 
 repositories {
