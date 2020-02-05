@@ -15,11 +15,23 @@ repositories {
 }
 
 dependencies {
-    implementation 'org.springframework.boot:spring-boot-starter-web'
-    implementation 'org.springframework.boot:spring-boot-starter-mustache'
+    dependencies {
+        // spring
+        implementation 'org.springframework.boot:spring-boot-starter-web'
+        implementation 'org.springframework.boot:spring-boot-starter-mustache'
 
-    testImplementation('org.springframework.boot:spring-boot-starter-test') {
-        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+        // util
+        implementation "commons-io:commons-io:${commonsIoVersion}"
+        implementation "commons-codec:commons-codec:${commonsCodecVersion}"
+        implementation "org.apache.commons:commons-lang3:${commonsLangVersion}"
+
+        // test
+        testImplementation('org.springframework.boot:spring-boot-starter-test') {
+            exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+            exclude group: 'io.rest-assured', module: 'rest-assured'
+        }
+        testImplementation "io.rest-assured:rest-assured:${restAssuredVersion}"
+        testImplementation "org.assertj:assertj-core:${assertJVersion}"
     }
 }
 
