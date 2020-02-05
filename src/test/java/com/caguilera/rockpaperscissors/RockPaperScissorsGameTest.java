@@ -100,7 +100,6 @@ public class RockPaperScissorsGameTest {
         RockPaperScissorsGame game = new RockPaperScissorsGame();
 
         assertThatThrownBy(() -> game.play(null, Shape.ROCK)).isInstanceOf(NullPointerException.class);
-
     }
 
     @Test
@@ -109,6 +108,5 @@ public class RockPaperScissorsGameTest {
         RockPaperScissorsGame game = new RockPaperScissorsGame();
 
         assertThatThrownBy(() -> game.play(Shape.ROCK, null)).isInstanceOf(NullPointerException.class);
-
     }
 }
