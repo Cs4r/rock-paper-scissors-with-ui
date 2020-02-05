@@ -45,4 +45,19 @@ public class GameStatisticsTest {
         assertThat(gameStatistics.getTotalRounds()).isEqualTo(4);
     }
 
+    @Test
+    @DisplayName("getTotalRounds for gameId returns 0 if no gameId exists")
+    void getTotalRoundsForGameIdWhenGameIdDoesNotExists() {
+        GameStatistics gameStatistics = new GameStatistics();
+
+        assertThat(gameStatistics.getTotalRounds(1)).isZero();
+    }
+
+    @Test
+    @DisplayName("getTotalRounds return 0 if no games")
+    void getTotalRoundsWhenNoGames() {
+        GameStatistics gameStatistics = new GameStatistics();
+
+        assertThat(gameStatistics.getTotalRounds()).isZero();
+    }
 }
