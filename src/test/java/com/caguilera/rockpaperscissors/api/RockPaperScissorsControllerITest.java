@@ -62,8 +62,32 @@ class RockPaperScissorsControllerITest extends BaseWebIntegrationTest {
                     .post(getUrl("/play"))
                     .then()
                     .statusCode(400)
-                    .log().all()
                     .body(hasSameContentAs("invalidRequest_player2Choice.json").ignoring("timestamp"));
+        }
+
+        @Test
+        @DisplayName("given invalid choices then it must return 400")
+        void badRequest_invalidChoices() throws JsonProcessingException {
+
+            given()
+                    .contentType(ContentType.JSON)
+                    .body(invalidPlayerChoices())
+                    .when()
+                    .post(getUrl("/play"))
+                    .then()
+                    .statusCode(400)
+                    .body(hasSameContentAs("invalidRequest_bothPlayerChoices.json").ignoring("timestamp"))
+                    .log().all();
+        }
+
+        private String invalidPlayerChoices() throws JsonProcessingException {
+            PlayRequestDto playRequest = new PlayRequestDto();
+
+            playRequest.setGameId(1001);
+            playRequest.setPlayer1Choice(null);
+            playRequest.setPlayer2Choice(null);
+
+            return objectMapper.writeValueAsString(playRequest);
         }
 
         private String invalidPlayer2Choice() throws JsonProcessingException {

@@ -1,0 +1,59 @@
+{
+  "timestamp": "2020-02-05T22:21:29.312+0000",
+  "status": 400,
+  "error": "Bad Request",
+  "errors": [
+    {
+      "codes": [
+        "NotNull.playRequestDto.player1Choice",
+        "NotNull.player1Choice",
+        "NotNull.com.caguilera.rockpaperscissors.core.Shape",
+        "NotNull"
+      ],
+      "arguments": [
+        {
+          "codes": [
+            "playRequestDto.player1Choice",
+            "player1Choice"
+          ],
+          "arguments": null,
+          "defaultMessage": "player1Choice",
+          "code": "player1Choice"
+        }
+      ],
+      "defaultMessage": "must not be null",
+      "objectName": "playRequestDto",
+      "field": "player1Choice",
+      "rejectedValue": null,
+      "bindingFailure": false,
+      "code": "NotNull"
+    },
+    {
+      "codes": [
+        "NotNull.playRequestDto.player2Choice",
+        "NotNull.player2Choice",
+        "NotNull.com.caguilera.rockpaperscissors.core.Shape",
+        "NotNull"
+      ],
+      "arguments": [
+        {
+          "codes": [
+            "playRequestDto.player2Choice",
+            "player2Choice"
+          ],
+          "arguments": null,
+          "defaultMessage": "player2Choice",
+          "code": "player2Choice"
+        }
+      ],
+      "defaultMessage": "must not be null",
+      "objectName": "playRequestDto",
+      "field": "player2Choice",
+      "rejectedValue": null,
+      "bindingFailure": false,
+      "code": "NotNull"
+    }
+  ],
+  "message": "Validation failed for object='playRequestDto'. Error count: 2",
+  "path": "/rps/play"
+}
