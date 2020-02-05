@@ -60,4 +60,22 @@ public class GameStatisticsTest {
 
         assertThat(gameStatistics.getTotalRounds()).isZero();
     }
+
+    @Test
+    @DisplayName("registerRound updates the number of total wins for player 1")
+    public void registerRoundUpdatesPlayer1Wins() {
+
+        GameStatistics gameStatistics = new GameStatistics();
+
+        gameStatistics.registerRound(1, Result.PLAYER_1_WINS);
+        gameStatistics.registerRound(2, Result.PLAYER_1_WINS);
+        gameStatistics.registerRound(3, Result.PLAYER_1_WINS);
+
+        assertThat(gameStatistics.getPlayer1Wins()).isEqualTo(3);
+
+        gameStatistics.registerRound(4, Result.PLAYER_1_WINS);
+        gameStatistics.registerRound(5, Result.PLAYER_1_WINS);
+
+        assertThat(gameStatistics.getPlayer1Wins()).isEqualTo(5);
+    }
 }
