@@ -15,6 +15,11 @@ public class RockPaperScissorsGame {
             return Result.PLAYER_1_WINS;
         }
 
+        if (player1Choice == Shape.ROCK && player2Choice == Shape.SCISSORS) {
+            return Result.PLAYER_1_WINS;
+        }
+
+
         return Result.PLAYER_2_WINS;
     }
 }
