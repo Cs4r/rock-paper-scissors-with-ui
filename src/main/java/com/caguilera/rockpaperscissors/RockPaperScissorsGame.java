@@ -1,8 +1,12 @@
 package com.caguilera.rockpaperscissors;
 
+import java.util.Objects;
+
 public class RockPaperScissorsGame {
 
     public Result play(Shape player1Choice, Shape player2Choice) {
+        Objects.requireNonNull(player1Choice, "player1Choice must be non-null");
+
         if (player1Choice == player2Choice) {
             return Result.DRAW;
         }

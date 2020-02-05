@@ -4,6 +4,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class RockPaperScissorsGameTest {
 
@@ -91,5 +92,14 @@ public class RockPaperScissorsGameTest {
         Shape player2Choice = Shape.ROCK;
 
         assertThat(game.play(player1Choice, player2Choice)).isEqualTo(Result.PLAYER_2_WINS);
+    }
+
+    @Test
+    void player1ChoiceCannotBeNull() {
+
+        RockPaperScissorsGame game = new RockPaperScissorsGame();
+
+        assertThatThrownBy(() -> game.play(null, Shape.ROCK)).isInstanceOf(NullPointerException.class);
+
     }
 }
