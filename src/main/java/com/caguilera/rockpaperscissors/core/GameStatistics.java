@@ -9,10 +9,13 @@ public class GameStatistics {
 
     private Map<Integer, Integer> roundsPerGame = new ConcurrentHashMap<>();
     private AtomicInteger player1Wins = new AtomicInteger(0);
+    private AtomicInteger player2Wins = new AtomicInteger(0);
 
     public void registerRound(int gameId, Result result) {
         if (result == Result.PLAYER_1_WINS) {
             player1Wins.addAndGet(1);
+        } else if (result == Result.PLAYER_2_WINS) {
+            player2Wins.addAndGet(1);
         }
         roundsPerGame.merge(gameId, 1, Integer::sum);
     }
@@ -27,5 +30,9 @@ public class GameStatistics {
 
     public int getPlayer1Wins() {
         return player1Wins.get();
+    }
+
+    public int getPlayer2Wins() {
+        return player2Wins.get();
     }
 }
