@@ -1,7 +1,10 @@
 package com.caguilera.rockpaperscissors.core;
 
+import org.springframework.stereotype.Component;
+
 import java.util.Objects;
 
+@Component
 public class RockPaperScissorsGame {
 
     public Result play(Shape player1Choice, Shape player2Choice) {

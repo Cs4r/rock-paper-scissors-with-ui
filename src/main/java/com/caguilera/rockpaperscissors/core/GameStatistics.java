@@ -1,10 +1,13 @@
 package com.caguilera.rockpaperscissors.core;
 
+import org.springframework.stereotype.Component;
+
 import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 
+@Component
 public class GameStatistics {
 
     private Map<Integer, Integer> roundsPerGame = new ConcurrentHashMap<>();
