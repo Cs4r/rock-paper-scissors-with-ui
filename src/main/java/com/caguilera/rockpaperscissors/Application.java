@@ -1,4 +1,3 @@
-
 package com.caguilera.rockpaperscissors;
 
 import org.springframework.boot.SpringApplication;

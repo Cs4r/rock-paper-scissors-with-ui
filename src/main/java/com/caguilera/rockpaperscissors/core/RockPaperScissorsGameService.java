@@ -8,8 +8,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class RockPaperScissorsGameService {
 
-    private RockPaperScissorsGame game;
-    private GameStatistics statistics;
+    private final RockPaperScissorsGame game;
+    private final GameStatistics statistics;
 
     @Autowired
     public RockPaperScissorsGameService(RockPaperScissorsGame game, GameStatistics statistics) {

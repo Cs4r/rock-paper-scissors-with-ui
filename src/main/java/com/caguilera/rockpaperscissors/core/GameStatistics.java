@@ -10,10 +10,10 @@ import java.util.concurrent.atomic.AtomicInteger;
 @Component
 public class GameStatistics {
 
-    private Map<Integer, Integer> roundsPerGame = new ConcurrentHashMap<>();
-    private AtomicInteger player1Wins = new AtomicInteger(0);
-    private AtomicInteger player2Wins = new AtomicInteger(0);
-    private AtomicInteger draws = new AtomicInteger(0);
+    private final Map<Integer, Integer> roundsPerGame = new ConcurrentHashMap<>();
+    private final AtomicInteger player1Wins = new AtomicInteger(0);
+    private final AtomicInteger player2Wins = new AtomicInteger(0);
+    private final AtomicInteger draws = new AtomicInteger(0);
 
     public void registerRound(int gameId, Result result) {
         if (result == Result.PLAYER_1_WINS) {
