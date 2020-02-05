@@ -38,7 +38,7 @@ class RockPaperScissorsControllerITest extends BaseWebIntegrationTest {
         }
 
         @Test
-        @DisplayName("given invalid request should return 400")
+        @DisplayName("given invalid choice for player 1 then it should return 400")
         void badRequest_invalidPlayer1Choice() throws JsonProcessingException {
 
             given()
@@ -50,7 +50,6 @@ class RockPaperScissorsControllerITest extends BaseWebIntegrationTest {
                     .statusCode(400)
                     .log().all()
                     .body(hasSameContentAs("invalidRequest_player1Choice.json").ignoring("timestamp"));
-
         }
 
         private String invalidPlayer1Choice() throws JsonProcessingException {
