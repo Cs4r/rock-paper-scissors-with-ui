@@ -38,7 +38,7 @@ class RockPaperScissorsControllerITest extends BaseWebIntegrationTest {
         }
 
         @Test
-        @DisplayName("given invalid choice for player 1 then it should return 400")
+        @DisplayName("given invalid choice for player 1 then it must return 400")
         void badRequest_invalidPlayer1Choice() throws JsonProcessingException {
 
             given()
@@ -48,8 +48,32 @@ class RockPaperScissorsControllerITest extends BaseWebIntegrationTest {
                     .post(getUrl("/play"))
                     .then()
                     .statusCode(400)
-                    .log().all()
                     .body(hasSameContentAs("invalidRequest_player1Choice.json").ignoring("timestamp"));
+        }
+
+        @Test
+        @DisplayName("given invalid choice for player 2 then it must return 400")
+        void badRequest_invalidPlayer2Choice() throws JsonProcessingException {
+
+            given()
+                    .contentType(ContentType.JSON)
+                    .body(invalidPlayer2Choice())
+                    .when()
+                    .post(getUrl("/play"))
+                    .then()
+                    .statusCode(400)
+                    .log().all()
+                    .body(hasSameContentAs("invalidRequest_player2Choice.json").ignoring("timestamp"));
+        }
+
+        private String invalidPlayer2Choice() throws JsonProcessingException {
+            PlayRequestDto playRequest = new PlayRequestDto();
+
+            playRequest.setGameId(25);
+            playRequest.setPlayer1Choice(Shape.PAPER);
+            playRequest.setPlayer2Choice(null);
+
+            return objectMapper.writeValueAsString(playRequest);
         }
 
         private String invalidPlayer1Choice() throws JsonProcessingException {
