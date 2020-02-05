@@ -1,4 +1,4 @@
-package com.caguilera.rockpaperscissors;
+package com.caguilera.rockpaperscissors.core;
 
 /**
  * Result that comes out after two players play a turn

@@ -1,5 +1,8 @@
-package com.caguilera.rockpaperscissors;
+package com.caguilera.rockpaperscissors.core;
 
+import com.caguilera.rockpaperscissors.core.Result;
+import com.caguilera.rockpaperscissors.core.RockPaperScissorsGame;
+import com.caguilera.rockpaperscissors.core.Shape;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

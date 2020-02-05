@@ -1,4 +1,4 @@
-package com.caguilera.rockpaperscissors;
+package com.caguilera.rockpaperscissors.core;
 
 /**
  * Each of the shapes a player can choose

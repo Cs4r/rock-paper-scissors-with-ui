@@ -1,4 +1,4 @@
-package com.caguilera.rockpaperscissors;
+package com.caguilera.rockpaperscissors.core;
 
 import java.util.Objects;
 
