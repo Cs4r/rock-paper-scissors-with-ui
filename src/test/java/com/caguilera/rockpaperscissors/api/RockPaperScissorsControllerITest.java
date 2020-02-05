@@ -16,6 +16,7 @@ import static io.restassured.RestAssured.given;
 @DisplayName("RockPaperScissorsController")
 class RockPaperScissorsControllerITest extends BaseWebIntegrationTest {
 
+    ObjectMapper objectMapper = new ObjectMapper();
 
     @Nested
     @DisplayName("POST /rps/play")
@@ -36,8 +37,33 @@ class RockPaperScissorsControllerITest extends BaseWebIntegrationTest {
                     .body(hasSameContentAs("validPlayRequest.json"));
         }
 
+        @Test
+        @DisplayName("given invalid request should return 400")
+        void badRequest_invalidPlayer1Choice() throws JsonProcessingException {
+
+            given()
+                    .contentType(ContentType.JSON)
+                    .body(invalidPlayer1Choice())
+                    .when()
+                    .post(getUrl("/play"))
+                    .then()
+                    .statusCode(400)
+                    .log().all()
+                    .body(hasSameContentAs("invalidRequest_player1Choice.json").ignoring("timestamp"));
+
+        }
+
+        private String invalidPlayer1Choice() throws JsonProcessingException {
+            PlayRequestDto playRequest = new PlayRequestDto();
+
+            playRequest.setGameId(1001);
+            playRequest.setPlayer1Choice(null);
+            playRequest.setPlayer2Choice(Shape.ROCK);
+
+            return objectMapper.writeValueAsString(playRequest);
+        }
+
         private String validPlayRequest() throws JsonProcessingException {
-            ObjectMapper objectMapper = new ObjectMapper();
 
             PlayRequestDto playRequest = new PlayRequestDto();
 
