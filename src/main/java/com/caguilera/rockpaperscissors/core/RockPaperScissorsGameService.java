@@ -1,6 +1,7 @@
 package com.caguilera.rockpaperscissors.core;
 
 
+import com.caguilera.rockpaperscissors.api.PlayRequestDto;
 import com.caguilera.rockpaperscissors.dto.GameResultDto;
 import com.caguilera.rockpaperscissors.dto.StatisticsDto;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +19,15 @@ public class RockPaperScissorsGameService {
         this.statistics = statistics;
     }
 
-    public GameResultDto playRound(int gameId, Shape player1Choice, Shape player2Choice) {
+    public GameResultDto playRound(PlayRequestDto playRequest) {
+        int gameId = playRequest.getGameId();
+        Shape player1Choice = playRequest.getPlayer1Choice();
+        Shape player2Choice = playRequest.getPlayer2Choice();
+
+        return playRound(gameId, player1Choice, player2Choice);
+    }
+
+    private GameResultDto playRound(int gameId, Shape player1Choice, Shape player2Choice) {
 
         Result result = game.play(player1Choice, player2Choice);
 
@@ -26,6 +35,7 @@ public class RockPaperScissorsGameService {
 
         return GameResultDto.from(gameId, result, statistics);
     }
+
 
     public StatisticsDto getStatistics() {
         return StatisticsDto.from(statistics);

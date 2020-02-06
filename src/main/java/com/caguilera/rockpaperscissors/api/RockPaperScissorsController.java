@@ -1,7 +1,6 @@
 package com.caguilera.rockpaperscissors.api;
 
 import com.caguilera.rockpaperscissors.core.RockPaperScissorsGameService;
-import com.caguilera.rockpaperscissors.core.Shape;
 import com.caguilera.rockpaperscissors.dto.GameResultDto;
 import com.caguilera.rockpaperscissors.dto.StatisticsDto;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,11 +31,7 @@ public class RockPaperScissorsController {
     @PostMapping(value = "/play", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> play(@RequestBody @Validated PlayRequestDto playRequest) {
 
-        int gameId = playRequest.getGameId();
-        Shape player1Choice = playRequest.getPlayer1Choice();
-        Shape player2Choice = playRequest.getPlayer2Choice();
-
-        GameResultDto result = rockPaperScissorsGameService.playRound(gameId, player1Choice, player2Choice);
+        GameResultDto result = rockPaperScissorsGameService.playRound(playRequest);
 
         return ResponseEntity.ok(result);
     }

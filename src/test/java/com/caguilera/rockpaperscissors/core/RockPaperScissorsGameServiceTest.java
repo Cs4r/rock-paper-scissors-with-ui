@@ -1,5 +1,6 @@
 package com.caguilera.rockpaperscissors.core;
 
+import com.caguilera.rockpaperscissors.api.PlayRequestDto;
 import com.caguilera.rockpaperscissors.dto.GameResultDto;
 import com.caguilera.rockpaperscissors.dto.StatisticsDto;
 import org.junit.jupiter.api.DisplayName;
@@ -20,8 +21,8 @@ class RockPaperScissorsGameServiceTest {
 
         int gameId = 1;
 
-        service.playRound(gameId, Shape.SCISSORS, Shape.PAPER);
-        GameResultDto gameResultDto = service.playRound(gameId, Shape.ROCK, Shape.SCISSORS);
+        service.playRound(playRequest(gameId, Shape.SCISSORS, Shape.PAPER));
+        GameResultDto gameResultDto = service.playRound(playRequest(gameId, Shape.ROCK, Shape.SCISSORS));
 
         assertThat(gameResultDto.getGameId()).isEqualTo(gameId);
         assertThat(gameResultDto.getRounds()).isEqualTo(2);
@@ -33,11 +34,11 @@ class RockPaperScissorsGameServiceTest {
 
         gameId = 2;
 
-        service.playRound(gameId, Shape.PAPER, Shape.PAPER);
-        service.playRound(gameId, Shape.ROCK, Shape.ROCK);
-        service.playRound(gameId, Shape.ROCK, Shape.SCISSORS);
+        service.playRound(playRequest(gameId, Shape.PAPER, Shape.PAPER));
+        service.playRound(playRequest(gameId, Shape.ROCK, Shape.ROCK));
+        service.playRound(playRequest(gameId, Shape.ROCK, Shape.SCISSORS));
 
-        gameResultDto = service.playRound(gameId, Shape.SCISSORS, Shape.SCISSORS);
+        gameResultDto = service.playRound(playRequest(gameId, Shape.SCISSORS, Shape.SCISSORS));
 
         assertThat(gameResultDto.getGameId()).isEqualTo(gameId);
         assertThat(gameResultDto.getRounds()).isEqualTo(4);
@@ -49,10 +50,10 @@ class RockPaperScissorsGameServiceTest {
 
         gameId = 3;
 
-        service.playRound(gameId, Shape.ROCK, Shape.PAPER);
-        service.playRound(gameId, Shape.PAPER, Shape.SCISSORS);
-        service.playRound(gameId, Shape.ROCK, Shape.PAPER);
-        gameResultDto = service.playRound(gameId, Shape.PAPER, Shape.SCISSORS);
+        service.playRound(playRequest(gameId, Shape.ROCK, Shape.PAPER));
+        service.playRound(playRequest(gameId, Shape.PAPER, Shape.SCISSORS));
+        service.playRound(playRequest(gameId, Shape.ROCK, Shape.PAPER));
+        gameResultDto = service.playRound(playRequest(gameId, Shape.PAPER, Shape.SCISSORS));
 
 
         assertThat(gameResultDto.getGameId()).isEqualTo(gameId);
@@ -75,13 +76,13 @@ class RockPaperScissorsGameServiceTest {
 
         int gameId = 1;
 
-        service.playRound(gameId, Shape.SCISSORS, Shape.PAPER);
-        service.playRound(gameId, Shape.ROCK, Shape.SCISSORS);
-        service.playRound(gameId, Shape.PAPER, Shape.SCISSORS);
+        service.playRound(playRequest(gameId, Shape.SCISSORS, Shape.PAPER));
+        service.playRound(playRequest(gameId, Shape.ROCK, Shape.SCISSORS));
+        service.playRound(playRequest(gameId, Shape.PAPER, Shape.SCISSORS));
 
-        service.playRound(gameId, Shape.PAPER, Shape.PAPER);
-        service.playRound(gameId, Shape.SCISSORS, Shape.SCISSORS);
-        service.playRound(gameId, Shape.ROCK, Shape.ROCK);
+        service.playRound(playRequest(gameId, Shape.PAPER, Shape.PAPER));
+        service.playRound(playRequest(gameId, Shape.SCISSORS, Shape.SCISSORS));
+        service.playRound(playRequest(gameId, Shape.ROCK, Shape.ROCK));
 
         StatisticsDto statisticsDto = service.getStatistics();
 
@@ -89,5 +90,16 @@ class RockPaperScissorsGameServiceTest {
         assertThat(statisticsDto.getPlayer1Wins()).isEqualTo(2);
         assertThat(statisticsDto.getPlayer2Wins()).isEqualTo(1);
         assertThat(statisticsDto.getDraws()).isEqualTo(3);
+    }
+
+
+    private static PlayRequestDto playRequest(int gameId, Shape player1Choice, Shape player2Choice) {
+        PlayRequestDto playRequestDto = new PlayRequestDto();
+
+        playRequestDto.setGameId(gameId);
+        playRequestDto.setPlayer1Choice(player1Choice);
+        playRequestDto.setPlayer2Choice(player2Choice);
+
+        return playRequestDto;
     }
 }
