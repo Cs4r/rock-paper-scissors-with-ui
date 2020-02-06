@@ -2,6 +2,7 @@ package com.caguilera.rockpaperscissors.core;
 
 
 import com.caguilera.rockpaperscissors.dto.GameResultDto;
+import com.caguilera.rockpaperscissors.dto.StatisticsDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,4 +27,7 @@ public class RockPaperScissorsGameService {
         return GameResultDto.from(gameId, result, statistics);
     }
 
+    public StatisticsDto getStatistics() {
+        return StatisticsDto.from(statistics);
+    }
 }
