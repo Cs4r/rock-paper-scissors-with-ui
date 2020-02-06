@@ -26,7 +26,6 @@
             <div class="col">
 
                 <select class="custom-select" id="player1">
-                    <option selected>Choose...</option>
                     <option value="ROCK">Rock</option>
                     <option value="PAPER">Paper</option>
                     <option value="SCISSORS">Scissors</option>
@@ -38,8 +37,6 @@
             <div class="col">
                 <select class="custom-select" id="player2">
                     <option value="ROCK" selected>Rock</option>
-                    <option value="PAPER">Paper</option>
-                    <option value="SCISSORS">Scissors</option>
                 </select>
 
             </div>
@@ -48,14 +45,14 @@
 
         <div class="row" style="padding-top: 10px">
             <div class="col">
-                <button type="button" class="btn btn-primary" id="playBtn">Play</button>
+                <button type="button" class="btn btn-primary" id="playBtn">Play Round</button>
 
                 <button type="button" class="btn btn-danger" id="restartBtn">Restart Game</button>
             </div>
         </div>
 
         <div class="row" style="padding-top: 10px">
-            <div class="col"><strong>Rounds:</strong> <i id="roundsCount">0</i></div>
+            <div class="col"><strong>Rounds:</strong> <i id="rounds">0</i></div>
         </div>
 
         <div class="row" style="padding-top: 10px">
@@ -68,29 +65,24 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                </tr>
                 </tbody>
             </table>
         </div>
 
         <div class="row" style="padding-top: 10px">
-            <div class="col"><strong>Total Rounds:</strong></div>
+            <div class="col"><strong>Total Rounds:</strong> <i id="totalRounds">0</i></div>
         </div>
 
         <div class="row" style="padding-top: 10px">
-            <div class="col"><strong>Total Wins 1st Player:</strong></div>
+            <div class="col"><strong>Total Wins 1st Player:</strong><i id="player1Wins">0</i></div>
         </div>
 
         <div class="row" style="padding-top: 10px">
-            <div class="col"><strong>Total Wins 2nd Player:</strong></div>
+            <div class="col"><strong>Total Wins 2nd Player:</strong><i id="player2Wins">0</i></div>
         </div>
 
         <div class="row" style="padding-top: 10px">
-            <div class="col"><strong>Total Draws:</strong></div>
+            <div class="col"><strong>Total Draws:</strong><i id="draws">0</i></div>
         </div>
 
     </div>
@@ -111,8 +103,8 @@
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
         crossorigin="anonymous"></script>
 <script
-        src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-        integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8="
+        src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
         crossorigin="anonymous"></script>
 
 <script>
@@ -127,6 +119,39 @@
 
         $("#playBtn").click(function () {
 
+            let choices = ["ROCK", "PAPER", "SCISSORS"]
+
+            let randomNumber = Math.floor((Math.random() * 3));
+            $("#player1").val(choices[randomNumber]);
+
+            let player1Choice = $("#player1").val();
+            let player2Choice = $("#player2").val();
+
+            $.ajax({
+                url: "play",
+                type: "POST",
+                data: JSON.stringify({gameId: gameId, player1Choice: player1Choice, player2Choice: player2Choice}),
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                success: function (data) {
+
+                    // Update table
+                    $('#roundsTable').append(
+                        '<tr>'
+                        + '<td>' + player1Choice + ' </td>'
+                        + '<td>' + player2Choice + ' </td>'
+                        + '<td>' + data.lastResult + '</td>'
+                        + '</tr>');
+
+                    // Update counts
+                    $("#rounds").text(data.rounds);
+                    $("#totalRounds").text(data.totalRounds);
+                    $("#player1Wins").text(data.player1Wins);
+                    $("#player2Wins").text(data.player2Wins);
+                    $("#draws").text(data.draws);
+                }
+            });
+
         });
 
         $("#restartBtn").click(function () {
@@ -134,7 +159,7 @@
             $("#roundsTable").find("tr:not(:first)").remove();
 
             // Reset round count
-            $("#roundsCount").text(0)
+            $("#rounds").text(0);
 
             // Generate a new gameId
             gameId = generateGameId();
