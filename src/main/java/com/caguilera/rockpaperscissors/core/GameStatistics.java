@@ -45,4 +45,12 @@ public class GameStatistics {
     public int getDraws() {
         return draws.get();
     }
+
+    // Used only in tests
+    public void resetStats() {
+        roundsPerGame.clear();
+        player1Wins.set(0);
+        player2Wins.set(0);
+        draws.set(0);
+    }
 }

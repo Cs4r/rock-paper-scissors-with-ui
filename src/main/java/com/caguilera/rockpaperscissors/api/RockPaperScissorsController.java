@@ -24,7 +24,7 @@ public class RockPaperScissorsController {
     }
 
     @GetMapping(value = "/statistics")
-    public ResponseEntity<?> statistics() {
+    public ResponseEntity<?> getStatistics() {
         StatisticsDto statistics = rockPaperScissorsGameService.getStatistics();
         return ResponseEntity.ok(statistics);
     }

@@ -1,14 +1,17 @@
 package com.caguilera.rockpaperscissors.api;
 
+import com.caguilera.rockpaperscissors.core.GameStatistics;
 import com.caguilera.rockpaperscissors.core.Shape;
 import com.caguilera.rockpaperscissors.util.BaseWebIntegrationTest;
 import com.caguilera.rockpaperscissors.util.WebIntegrationTest;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.restassured.http.ContentType;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import static io.restassured.RestAssured.given;
 
@@ -16,7 +19,15 @@ import static io.restassured.RestAssured.given;
 @DisplayName("RockPaperScissorsController")
 class RockPaperScissorsControllerITest extends BaseWebIntegrationTest {
 
+    @Autowired
+    private GameStatistics gameStatistics;
+
     ObjectMapper objectMapper = new ObjectMapper();
+
+    @BeforeEach
+    void setUp() {
+        gameStatistics.resetStats();
+    }
 
     @Nested
     @DisplayName("POST /rps/play")
@@ -113,6 +124,46 @@ class RockPaperScissorsControllerITest extends BaseWebIntegrationTest {
             PlayRequestDto playRequest = new PlayRequestDto();
 
             playRequest.setGameId(25);
+            playRequest.setPlayer1Choice(Shape.PAPER);
+            playRequest.setPlayer2Choice(Shape.ROCK);
+
+            return objectMapper.writeValueAsString(playRequest);
+        }
+
+    }
+
+
+    @Nested
+    @DisplayName("GET /rps/statistics")
+    class GetStatistics {
+
+
+        @Test
+        @DisplayName("getStatistics returns 200 along with StatisticsDto")
+        public void retrievesStats() throws JsonProcessingException {
+
+            given()
+                    .contentType(ContentType.JSON)
+                    .body(validPlayRequest())
+                    .when()
+                    .post(getUrl("/play"))
+                    .then()
+                    .statusCode(200);
+
+            given()
+                    .contentType(ContentType.JSON)
+                    .when()
+                    .get(getUrl("/statistics"))
+                    .then()
+                    .statusCode(200)
+                    .body(hasSameContentAs("GetStatistics.json"));
+        }
+
+        private String validPlayRequest() throws JsonProcessingException {
+
+            PlayRequestDto playRequest = new PlayRequestDto();
+
+            playRequest.setGameId(10);
             playRequest.setPlayer1Choice(Shape.PAPER);
             playRequest.setPlayer2Choice(Shape.ROCK);
 
