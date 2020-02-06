@@ -115,12 +115,26 @@
 
     $(document).ready(function () {
 
+        $.ajax({
+            url: "statistics",
+            type: "GET",
+            dataType: "json",
+            contentType: "application/json; charset=utf-8",
+            success: function (data) {
+                // Update counts
+                $("#totalRounds").text(data.totalRounds);
+                $("#player1Wins").text(data.player1Wins);
+                $("#player2Wins").text(data.player2Wins);
+                $("#draws").text(data.draws);
+            }
+        });
+
         let gameId = generateGameId();
 
         $("#playBtn").click(function () {
 
-            let choices = ["ROCK", "PAPER", "SCISSORS"]
-
+            // Generate player 1 choice in a randomly manner
+            let choices = ["ROCK", "PAPER", "SCISSORS"];
             let randomNumber = Math.floor((Math.random() * 3));
             $("#player1").val(choices[randomNumber]);
 
