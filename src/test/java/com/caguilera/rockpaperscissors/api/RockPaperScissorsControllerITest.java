@@ -2,6 +2,7 @@ package com.caguilera.rockpaperscissors.api;
 
 import com.caguilera.rockpaperscissors.core.GameStatistics;
 import com.caguilera.rockpaperscissors.core.Shape;
+import com.caguilera.rockpaperscissors.dto.PlayRequestDto;
 import com.caguilera.rockpaperscissors.util.BaseWebIntegrationTest;
 import com.caguilera.rockpaperscissors.util.WebIntegrationTest;
 import com.fasterxml.jackson.core.JsonProcessingException;

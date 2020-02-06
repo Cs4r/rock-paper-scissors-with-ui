@@ -4,6 +4,9 @@ import org.springframework.stereotype.Component;
 
 import java.util.Objects;
 
+/**
+ * Rock, Paper, Scissors game logic
+ */
 @Component
 public class RockPaperScissorsGame {
 

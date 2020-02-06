@@ -1,8 +1,9 @@
 package com.caguilera.rockpaperscissors.core;
 
-import com.caguilera.rockpaperscissors.api.PlayRequestDto;
+import com.caguilera.rockpaperscissors.dto.PlayRequestDto;
 import com.caguilera.rockpaperscissors.dto.GameResultDto;
 import com.caguilera.rockpaperscissors.dto.StatisticsDto;
+import com.caguilera.rockpaperscissors.service.RockPaperScissorsGameService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

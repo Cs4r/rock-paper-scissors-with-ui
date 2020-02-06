@@ -1,4 +1,4 @@
-package com.caguilera.rockpaperscissors.api;
+package com.caguilera.rockpaperscissors.dto;
 
 import com.caguilera.rockpaperscissors.core.Shape;
 

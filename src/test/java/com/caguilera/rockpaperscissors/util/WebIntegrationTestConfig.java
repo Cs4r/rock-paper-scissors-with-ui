@@ -1,9 +1,9 @@
 package com.caguilera.rockpaperscissors.util;
 
 
-import com.caguilera.rockpaperscissors.Application;
+import com.caguilera.rockpaperscissors.RockPaperScissorsApplication;
 import org.springframework.context.annotation.Import;
 
-@Import({Application.class,})
+@Import({RockPaperScissorsApplication.class,})
 public class WebIntegrationTestConfig {
 }

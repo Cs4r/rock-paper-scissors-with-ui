@@ -7,6 +7,11 @@ import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 
+/**
+ * Tracks statistics for several rounds
+ *
+ * @author Cesar Aguilera
+ */
 @Component
 public class GameStatistics {
 

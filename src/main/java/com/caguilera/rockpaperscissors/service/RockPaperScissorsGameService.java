@@ -1,7 +1,11 @@
-package com.caguilera.rockpaperscissors.core;
+package com.caguilera.rockpaperscissors.service;
 
 
-import com.caguilera.rockpaperscissors.api.PlayRequestDto;
+import com.caguilera.rockpaperscissors.core.GameStatistics;
+import com.caguilera.rockpaperscissors.core.Result;
+import com.caguilera.rockpaperscissors.core.RockPaperScissorsGame;
+import com.caguilera.rockpaperscissors.core.Shape;
+import com.caguilera.rockpaperscissors.dto.PlayRequestDto;
 import com.caguilera.rockpaperscissors.dto.GameResultDto;
 import com.caguilera.rockpaperscissors.dto.StatisticsDto;
 import org.springframework.beans.factory.annotation.Autowired;

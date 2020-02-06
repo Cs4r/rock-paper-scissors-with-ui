@@ -1,7 +1,8 @@
 package com.caguilera.rockpaperscissors.api;
 
-import com.caguilera.rockpaperscissors.core.RockPaperScissorsGameService;
+import com.caguilera.rockpaperscissors.service.RockPaperScissorsGameService;
 import com.caguilera.rockpaperscissors.dto.GameResultDto;
+import com.caguilera.rockpaperscissors.dto.PlayRequestDto;
 import com.caguilera.rockpaperscissors.dto.StatisticsDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
