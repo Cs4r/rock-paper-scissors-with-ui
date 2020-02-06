@@ -1,6 +1,7 @@
 package com.caguilera.rockpaperscissors.core;
 
 import com.caguilera.rockpaperscissors.dto.GameResultDto;
+import com.caguilera.rockpaperscissors.dto.StatisticsDto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -61,5 +62,32 @@ class RockPaperScissorsGameServiceTest {
         assertThat(gameResultDto.getPlayer2Wins()).isEqualTo(4);
         assertThat(gameResultDto.getDraws()).isEqualTo(3);
         assertThat(gameResultDto.getLastResult()).isEqualTo(Result.PLAYER_2_WINS);
+    }
+
+    @Test
+    @DisplayName("getStatistics returns dto with stats")
+    void getStatistics() {
+
+        RockPaperScissorsGame game = new RockPaperScissorsGame();
+        GameStatistics statistics = new GameStatistics();
+
+        RockPaperScissorsGameService service = new RockPaperScissorsGameService(game, statistics);
+
+        int gameId = 1;
+
+        service.playRound(gameId, Shape.SCISSORS, Shape.PAPER);
+        service.playRound(gameId, Shape.ROCK, Shape.SCISSORS);
+        service.playRound(gameId, Shape.PAPER, Shape.SCISSORS);
+
+        service.playRound(gameId, Shape.PAPER, Shape.PAPER);
+        service.playRound(gameId, Shape.SCISSORS, Shape.SCISSORS);
+        service.playRound(gameId, Shape.ROCK, Shape.ROCK);
+
+        StatisticsDto statisticsDto = service.getStatistics();
+
+        assertThat(statisticsDto.getTotalRounds()).isEqualTo(6);
+        assertThat(statisticsDto.getPlayer1Wins()).isEqualTo(2);
+        assertThat(statisticsDto.getPlayer2Wins()).isEqualTo(1);
+        assertThat(statisticsDto.getDraws()).isEqualTo(3);
     }
 }

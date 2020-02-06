@@ -23,7 +23,7 @@ public class RockPaperScissorsController {
         this.rockPaperScissorsGameService = rockPaperScissorsGameService;
     }
 
-    @GetMapping
+    @GetMapping(value = "/statistics")
     public ResponseEntity<?> statistics() {
         StatisticsDto statistics = rockPaperScissorsGameService.getStatistics();
         return ResponseEntity.ok(statistics);
