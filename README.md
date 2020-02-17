@@ -19,3 +19,14 @@ To run the tests execute:
 ```bash
 ./gradlew test 
 ```
+
+## Using docker
+
+Build the image with the following command:
+
+> docker build . -t rps
+
+Then run a container with that image using: 
+
+> docker run --name rps -p8080:8080 rps
+
